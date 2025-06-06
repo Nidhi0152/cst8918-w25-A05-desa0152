@@ -98,3 +98,10 @@ resource "azurerm_network_interface_security_group_association" "main" {
   network_interface_id      = azurerm_network_interface.main.id
   network_security_group_id = azurerm_network_security_group.main.id
 }
+
+data "cloudinit_config" "config" {
+  part {
+    content_type = "text/x-shellscript"
+    content      = file("${path.module}/init.sh")
+  }
+}
